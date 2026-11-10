@@ -60,6 +60,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
 .dlg{width:min(92vw,340px)}
 .dlg .body{background:var(--face);padding:18px 14px 8px;text-align:center;line-height:1.7}
 .dlg .ico{font-size:34px;margin-bottom:6px}
+.dlg .frog{width:120px;height:120px;object-fit:contain;display:block;margin:0 auto 6px;image-rendering:auto}
 .dlg .row{padding:6px 0 10px;text-align:center}
 .bar{height:16px;margin:10px 0;box-shadow:inset 1px 1px var(--lo),inset -1px -1px var(--hi);background:#fff;padding:2px}
 .bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,#000080 0 8px,transparent 8px 10px);transition:width .9s steps(10)}
@@ -159,7 +160,7 @@ f.addEventListener('submit',async e=>{
   catch(x){ok=false}
   setTimeout(()=>{
     document.getElementById('okbody').innerHTML = ok
-      ? '<div class="ico">✅</div><div><b>신청이 완료되었습니다!</b><br>12월 26일, 만나요'+(ENDPOINT?'':'<br><small style="color:#c00">(테스트 모드: 저장되지 않음)</small>')+'</div>'
+      ? '<img class="frog" src="img/frog.png" alt=""><div><b>신청이 완료되었습니다!</b><br>12월 26일, 만나요'+(ENDPOINT?'':'<br><small style="color:#c00">(테스트 모드: 저장되지 않음)</small>')+'</div>'
       : '<div class="ico">⛔</div><div><b>전송에 실패했어요.</b><br>잠시 후 다시 시도해주세요.</div>';
     document.getElementById('okrow').style.display='block';
     document.getElementById('okbtn').onclick=()=>{modal.classList.remove('on'); if(ok){f.reset();} send.disabled=false; if(!ok)return;};
