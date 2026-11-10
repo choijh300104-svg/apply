@@ -79,7 +79,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
     <!-- 로고를 쓰려면 img/logo.png 를 같은 폴더에 두고 아래 줄 주석 해제
     <img class="logo" src="img/logo.png" alt="SPORTSJOB ALIO"> -->
     <h1>제 1회<br>스잡알 고등학교 동창회<br>참석 신청서</h1>
-    <p class="sub">2026. 12. 26 (토) PM 6:00<br>칼스버그 비어라운지 · 서울 중구 을지로15길 32</p>
+    <p class="sub">2026. 12. 26 (토) PM 6:00<br>을지로3가역 근처</p>
 
     <fieldset><legend>학생 기본정보</legend>
       <label class="f"><b>이름 <span class="req">*</span></b><input type="text" name="name" maxlength="20" required></label>
@@ -87,19 +87,19 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
       <div class="f"><b style="display:block;margin-bottom:2px;font-size:13px">성별 <span class="req">*</span></b>
         <div class="radios"><label><input type="radio" name="gender" value="남"> 남</label><label><input type="radio" name="gender" value="여"> 여</label></div></div>
       <label class="f"><b>나이 (출생연도) <span class="req">*</span></b>
-        <div class="inline"><input type="number" name="birth" inputmode="numeric" min="1950" max="2010" placeholder="1995"><span>년생</span></div></label>
+        <input type="text" name="birth" maxlength="10" placeholder="예) 23(04)"></label>
     </fieldset>
 
     <fieldset><legend>학교(직장) 정보</legend>
       <label class="f"><b>현재 소속 (직장명) <span class="req">*</span></b><input type="text" name="company" maxlength="40" required></label>
       <label class="f"><b>직무 / 포지션 <span class="req">*</span></b><input type="text" name="position" maxlength="40" placeholder="예) 마케팅, 구단 운영, 트레이너" required></label>
       <label class="f"><b>근무 연차 <span class="req">*</span></b>
-        <div class="inline"><input type="number" name="career" inputmode="numeric" min="0" max="50" placeholder="3"><span>년차</span></div>
-        <p class="hint">스포츠산업 총 경력 기준 (1년 미만은 0)</p></label>
+        <div class="inline"><input type="number" name="career" inputmode="numeric" min="1" max="50" placeholder="3"><span>년차</span></div>
+        <p class="hint">스포츠산업 총 경력 기준 (1년 미만은 1년차)</p></label>
     </fieldset>
 
-    <fieldset><legend>짝꿍 (선택)</legend>
-      <label class="f"><b>같이 신청한 사람</b><input type="text" name="friend" maxlength="40" placeholder="이름을 적어주세요 (여러 명이면 , 로 구분)"></label>
+    <fieldset><legend>친한 친구 (선택)</legend>
+      <label class="f"><b>같이 신청한 친한 친구</b><input type="text" name="friend" maxlength="40" placeholder="이름을 적어주세요 (여러 명이면 , 로 구분)"></label>
       <p class="hint">※ 같이 오시는 분도 각자 신청서를 작성해야 합니다.</p>
     </fieldset>
 
@@ -107,7 +107,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
 
     <label class="agree"><input type="checkbox" id="agree"><span>[필수] 행사 운영을 위해 이름·연락처·소속 등 개인정보를 수집·이용하는 데 동의합니다. (행사 종료 후 파기)</span></label>
     <div class="err" id="err"></div>
-    <div class="submit"><button type="submit" class="btn" id="send">▶ 입학(참석) 신청하기</button></div>
+    <div class="submit"><button type="submit" class="btn" id="send">▶ 참석 신청하기</button></div>
   </form>
   </div>
  </div>
@@ -138,10 +138,10 @@ function validate(){
   if(!v('name'))return'이름을 입력해주세요.';
   if(!/^01\d-\d{3,4}-\d{4}$/.test(v('phone')))return'연락처를 010-0000-0000 형식으로 입력해주세요.';
   if(!f.gender.value)return'성별을 선택해주세요.';
-  const b=+v('birth'); if(!(b>=1950&&b<=2010))return'출생연도를 4자리로 입력해주세요. (예: 1995)';
+  if(!v('birth'))return'나이(출생연도)를 입력해주세요. (예: 23(04))';
   if(!v('company'))return'현재 소속(직장명)을 입력해주세요.';
   if(!v('position'))return'직무/포지션을 입력해주세요.';
-  if(v('career')===''||+v('career')<0)return'근무 연차를 입력해주세요.';
+  if(v('career')===''||+v('career')<1)return'근무 연차를 입력해주세요.';
   if(!document.getElementById('agree').checked)return'개인정보 수집·이용에 동의해주세요.';
   return'';
 }
