@@ -95,7 +95,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
       <label class="f"><b>현재 소속 (직장명) <span class="req">*</span></b><input type="text" name="company" maxlength="40" required></label>
       <label class="f"><b>직무 / 포지션 <span class="req">*</span></b><input type="text" name="position" maxlength="40" placeholder="예) 마케팅, 구단 운영, 트레이너" required></label>
       <label class="f"><b>근무 연차 <span class="req">*</span></b>
-        <div class="inline"><input type="number" name="career" inputmode="numeric" min="1" max="50" placeholder="3"><span>년차</span></div>
+        <div class="inline"><input type="text" name="career" inputmode="numeric" maxlength="2" placeholder="3"><span>년차</span></div>
         <p class="hint">스포츠산업 총 경력 기준 (1년 미만은 1년차)</p></label>
     </fieldset>
 
@@ -129,6 +129,7 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycbyWNg6OvPhi1TrQr7Yj9Ka
 const f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
 const tick=()=>{const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};tick();setInterval(tick,30000);
 
+f.career.addEventListener('input',()=>{f.career.value=f.career.value.replace(/\D/g,'')});
 f.phone.addEventListener('input',()=>{
   const d=f.phone.value.replace(/\D/g,'').slice(0,11);
   f.phone.value=d.length>7?d.replace(/(\d{3})(\d{4})(\d+)/,'$1-$2-$3'):d.length>3?d.replace(/(\d{3})(\d+)/,'$1-$2'):d;
