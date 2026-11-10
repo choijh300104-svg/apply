@@ -123,7 +123,7 @@ input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#0000
 
 <script>
 // ★ Apps Script 웹앱 URL 을 여기에 붙여넣으세요 (비워두면 테스트 모드: 저장 안 됨)
-const ENDPOINT = "";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbyWNg6OvPhi1TrQr7Yj9KasaqsBClE3mj0Jir9w5J_m9sNklQ3apEY6ALr7Ih2dA0_VHA/exec";
 
 const f = document.getElementById('f'), err = document.getElementById('err'), send = document.getElementById('send');
 const tick=()=>{const d=new Date();document.getElementById('clock').textContent=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};tick();setInterval(tick,30000);
